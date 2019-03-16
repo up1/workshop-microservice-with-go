@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  service01:
+    build: ./service01
+    ports:
+      - 9001:9001
+
+  service02:
+    build: ./service02
