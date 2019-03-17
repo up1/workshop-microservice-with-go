@@ -1,8 +1,11 @@
-
-
+## Step 1 :: Start Zipkin server
+```
 docker container run --rm -p 9411:9411 openzipkin/zipkin
+```
 
-## Step 1 :: Start service 02
+Open url=http://localhost:9411 in browser
+
+## Step 2 :: Start service 02
 
 ```
 $cd service02
@@ -13,7 +16,7 @@ $./service02
 Open url=http://localhost:9002/hello/{state} in browser
 * state = success|fail
 
-## Step 2 :: Start service 01
+## Step 3 :: Start service 01
 
 ```
 $cd service01
