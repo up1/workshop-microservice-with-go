@@ -1,0 +1,41 @@
+version: '3.7'
+
+services: 
+  consul:
+    image: consul
+    ports:
+      - "8300:8300"
+      - "8400:8400"
+      - "8500:8500"
+      - "9998:9998"
+      - "9999:9999"
+    networks:
+      - working
+
+  service01:
+    build: 
+      context: ./service01
+    image: somkiat/service01
+    environment: 
+      - CONSUL_HTTP_ADDR=consul:8500  
+    ports: 
+      - "9001:9001"
+    depends_on:
+      - consul
+    networks:
+      - working
+
+  service02:
+    build: 
+      context: ./service02
+    image: somkiat/service02
+    environment: 
+      - CONSUL_HTTP_ADDR=consul:8500  
+    depends_on:
+      - consul
+    networks:
+      - working
+
+networks:
+  working:
+    driver: bridge
